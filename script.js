@@ -2,40 +2,58 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
 var map, heatmap;
-var curr_lat = 9.982, curr_lon = 76.306;
+var curr_lat = 9.982,
+    curr_lon = 76.306;
 var radius = 50;
-var points;
+var points = [];
 
-var g_low = ['rgba(100, 255, 0, 0)',
-            'rgba(100, 200, 0, 1)',
-            'rgba(255, 255, 0, 1)',
-            'rgba(255, 255, 0, 1)']
-var g_high = ['rgba(255, 255, 0, 0)',
-            'rgba(255, 255, 0, 1)',
-            'rgba(255, 100, 0, 1)',
-            'rgba(255, 0, 0, 1)']    
+var g_1 = ['rgba(100, 255, 0, 0)',
+    'rgba(255, 255, 0, 0.5)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 255, 0, 1)'
+]
+var g_2 = ['rgba(255, 255, 0, 0)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 150, 0, 1)',
+    'rgba(255, 100, 0, 1)'
+]
+var g_3 = ['rgba(255, 100, 0, 0)',
+    'rgba(255, 100, 0, 1)',
+    'rgba(255, 50, 0, 1)',
+    'rgba(255, 10, 0, 1)'
+]
+var g_4 = ['rgba(255, 0, 0, 0)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)'
+]
 
-function newPoint(lat, lon, intensity){
-	return { location: new google.maps.LatLng(lat, lon), weight: intensity }
+function newPoint(lat, lon, intensity) {
+    return { location: new google.maps.LatLng(lat, lon), weight: intensity }
 };
 
+
+
+
 function initMap() {
+    $('#id-locations').children().each(function(index, element) {
+        points.push({ location: new google.maps.LatLng(element.getAttribute('lat'), element.getAttribute('lon')), weight: element.getAttribute('weight') });
+    });
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: { lat: curr_lat, lng: curr_lon },
         mapTypeId: 'roadmap'
     });
-
     heatmap = new google.maps.visualization.HeatmapLayer({
-        data: getPoints(),
+        data: points,
         map: map,
         radius: radius,
-        gradient: g_low
+        gradient: g_1
     });
 }
 
-$(document).ready(function(){
-	var startPos;
+$(document).ready(function() {
+    var startPos;
     var geoOptions = {
         enableHighAccuracy: true
     }
@@ -58,6 +76,8 @@ $(document).ready(function(){
 
     document.getElementById("id-lat").innerHTML = curr_lat;
     document.getElementById("id-lon").innerHTML = curr_lon;
+
+
 
 });
 

@@ -22,38 +22,44 @@
     }
 
     #floating-panel {
-        position: absolute;
+        position: fixed;
         top: 10px;
         left: 25%;
         z-index: 5;
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;
-        text-align: center;
+        display: inline;
         font-family: 'Roboto', 'sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
+        
     }
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_Gf722kinVjxMdCNFs3K-KC4aW6C5as&libraries=visualization&callback=initMap">
+    </script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
 
 <body>
-    <div id="floating-panel">
-        Your Location:
-        <div id="id-lat"></div>
-        <div id="id-lon"></div>
+    <div id="floating-panel">Your Location: <span id="id-lat"></span> <span id="id-lon"></span><br>
+    How much flooding in your area ? <br>
+    <select>
+    	<option>Less than 1ft</option>
+    	<option>1ft - 4ft</option>
+    	<option>4ft - 7ft</option>
+    	<option>7ft - 10ft</option>
+    	<option>More than 10ft</option>
+    </select><br>
+    <button onclick="addNewData()">Submit</button>
+    </div>
         <!--button onclick="toggleHeatmap()">Toggle Heatmap</button-->
         <!--button onclick="changeGradient()">Change gradient</button>
         <button onclick="changeRadius()">Change radius</button>
         <button onclick="changeOpacity()">Change opacity</button-->
-    </div>
+    
     <div id="map"></div>
-    <script type="text/javascript" src="script.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN_Gf722kinVjxMdCNFs3K-KC4aW6C5as&libraries=visualization&callback=initMap">
-    </script>
 </body>
 <div id="id-locations">
-	<div id="location"></div>
+	<div lat='9.982' lon='76.306' weight='5'></div>
 </div>
 </html>
