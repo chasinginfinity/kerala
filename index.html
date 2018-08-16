@@ -43,14 +43,14 @@
 <body>
     <div id="floating-panel">Your Location: <span id="id-lat"></span> <span id="id-lon"></span><br>
     How much flooding in your area ? <br>
-    <select>
-    	<option>Less than 1ft</option>
-    	<option>1ft - 4ft</option>
-    	<option>4ft - 7ft</option>
-    	<option>7ft - 10ft</option>
-    	<option>More than 10ft</option>
+    <select id="id-depth">
+    	<option value="0">Less than 1ft</option>
+    	<option value="1">1ft - 4ft</option>
+    	<option value="2">4ft - 7ft</option>
+    	<option value="3">7ft - 10ft</option>
+    	<option value="4">More than 10ft</option>
     </select><br>
-    <button onclick="addNewData()">Submit</button>
+    <button id="id-add-new-data">Submit</button>
     </div>
         <!--button onclick="toggleHeatmap()">Toggle Heatmap</button-->
         <!--button onclick="changeGradient()">Change gradient</button>
@@ -60,6 +60,6 @@
     <div id="map"></div>
 </body>
 <div id="id-locations">
-	<div lat='9.982' lon='76.306' weight='5'></div>
+	<div lat='9.9827712' lon='76.3060224' weight='5'></div>
 </div>
 </html>

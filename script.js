@@ -2,10 +2,11 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
 var map, heatmap;
-var curr_lat = 9.982,
-    curr_lon = 76.306;
+var curr_lat = 9.9827712,
+    curr_lon = 76.3060224;
 var radius = 50;
 var points = [];
+var cur_location;
 
 var g_1 = ['rgba(100, 255, 0, 0)',
     'rgba(255, 255, 0, 0.5)',
@@ -62,6 +63,8 @@ $(document).ready(function() {
         curr_lat = startPos.coords.latitude;
         curr_lon = startPos.coords.longitude;
         initMap();
+        document.getElementById("id-lat").innerHTML = curr_lat;
+    	document.getElementById("id-lon").innerHTML = curr_lon;
     };
     var geoError = function(error) {
         console.log('Error occurred. Error code: ' + error.code);
@@ -74,10 +77,13 @@ $(document).ready(function() {
 
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 
-    document.getElementById("id-lat").innerHTML = curr_lat;
-    document.getElementById("id-lon").innerHTML = curr_lon;
+    
 
-
+    $("#id-add-new-data").click(function() {
+    	cur_location = new google.maps.LatLng(curr_lat, curr_lon);
+    	console.log(cur_location);
+	    alert("The paragraph was clicked.");
+	});
 
 });
 
@@ -111,7 +117,6 @@ function changeOpacity() {
 // Heatmap data: 500 Points
 function getPoints() {
     return [{ location: new google.maps.LatLng(9.982, 76.306), weight: 5 },
-
         { location: new google.maps.LatLng(9, 76), weight: 5 },
         { location: new google.maps.LatLng(9.982, 76.306), weight: 5 },
         { location: new google.maps.LatLng(9.982, 76.306), weight: 5 }
